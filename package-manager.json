@@ -1,0 +1,33 @@
+{
+	"scope": "springernature",
+	"packagesDirectory": "./packages",
+	"changelog": "HISTORY.md",
+	"required": [
+	  "README.md",
+	  "package.json"
+	],
+	"folders": {
+		"scss": [
+			"scss"
+		],
+		"js": [
+			"js"
+		],
+		"view": [
+			"html",
+			"md",
+			"txt",
+			"hbs"
+		],
+		"img": [
+			"jpg",
+			"gif",
+			"png",
+			"svg"
+		],
+		"__tests__": [
+			"js",
+			"json"
+		]
+	}
+  }

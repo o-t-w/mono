@@ -1,0 +1,9 @@
+{
+	"name": "@pixelpusher/thingy",
+	"version": "1.0.0",
+	"description": "a thing",
+	"main": "index.js",
+	"author": "olliew",
+	"license": "MIT"
+  }
+  

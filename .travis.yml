@@ -6,13 +6,11 @@ cache:
   directories:
     - node_modules
 
-deploy:
-  provider: npm
-  email: oliverwilliams345@gmail.com
-  api_key:
-    secure: JPoW3F9UNxp80PSHlhMQyTcOrFJUxlgTADZK/xllZW0sA6p5OJjC9VxS7MZneg0u/XyOObxhj2w2o7VJjlGnJONz7g/Pd8k0MaMJmvZHddbEAFc2E9GOxJ/3FE3Mpop3yE2NkGKHtLNuPIPBb9LoV2L92QOAngn//LtF/h2uDbaKa6gVlAJBcZcLWF7CM6kVpdnjTsRYk7C0TQv9Zbe5zJMadDaH7N0mZpI1xCBgBcY82862Sw6jyXJHlVvW9VZeQvoUd8sf00tDQDSV0Ul/78i73YWwteDUHA8+YYtzpF8xD/BDT9nLUnXX7R8rGjdLuKMVFzLBR/wygRpLX9/0ajiJ7qYrfETR0Ka5EzkH0g2eo3qSCRnciPNuG5RRPqgAtCX9rx3bKf+MU5D8wgDXAq34Qh5Aq+isGjhffee/WcwOHdqxKjOs1dyhdl+BiSpWoW+MT9R8TyWUamUlx6EG4kHEMKA9gKFwPKDzRlyD4mBnDGKC9WNULQLlArRMRXEb5AAsCymX4YQGtxIptZFe0BvNUm/ju6ID3CVuMjmwaEwUyrfic1unZYLbozoN/vp5cTB5cITQ4Dvc0RWh66ARk1WOrav1Au38X5gBLzFnmxjDC4bUYrfEGWQOkEWuM1QAosUQZTAccxpVyaLZ2n+2Ew3KeIgA3eDLC/R3YGGUfl8=
-  on:
-    repo: o-t-w/mono
+# build notification
+notifications:
+  email:
+  - oliverwilliams345@gmail.com
+
 # Restrict builds on branches
 branches:
   only:

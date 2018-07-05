@@ -1,5 +1,6 @@
-# Build matrix
+# latest stable Node.js release
 language: node_js
+node_js: node
 
 # cache the node modules
 cache:

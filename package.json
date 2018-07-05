@@ -3,23 +3,23 @@
   "version": "1.0.0",
   "description": "a monorepo of components",
   "main": "index.js",
-  "repository" : {
-	  "type": "git",
-	  "url": "https://github.com/o-t-w/mono"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o-t-w/mono"
   },
   "scripts": {
     "lint:js": "eslint **/*.js",
     "build": "npm run lint:js",
-	"create": "sn-package-create",
+    "create": "sn-package-create",
     "validate": "sn-package-validate",
     "publish": "sn-package-publish"
   },
   "author": "olliew",
   "license": "ISC",
   "devDependencies": {
+    "@springernature/eslint-config": "^1.0.0",
     "@springernature/global-package-manager": "^2.2.0",
-    "eslint": "^5.0.1",
-	"@springernature/eslint-config": "^1.0.0",
+    "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.13.0",
     "eslint-plugin-no-use-extend-native": "^0.3.12",
@@ -27,5 +27,8 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-unicorn": "^4.0.2",
     "lerna": "^2.11.0"
+  },
+  "dependencies": {
+    "ajv": "^5.5.2"
   }
 }

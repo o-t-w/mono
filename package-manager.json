@@ -1,23 +1,13 @@
 {
-	"scope": "springernature",
+	"scope": "pixelpusher",
 	"packagesDirectory": "./packages",
 	"changelog": "HISTORY.md",
 	"required": [
-	  "README.md",
 	  "package.json"
 	],
 	"folders": {
-		"scss": [
-			"scss"
-		],
 		"js": [
 			"js"
-		],
-		"view": [
-			"html",
-			"md",
-			"txt",
-			"hbs"
 		],
 		"img": [
 			"jpg",

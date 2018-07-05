@@ -1,5 +1,5 @@
 function thingy() {
-	console.log("thing");
+	console.log('thing');
 }
 
 export default thingy;

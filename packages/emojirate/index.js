@@ -1,10 +1,9 @@
 
 class Emojirate extends HTMLElement {
-
-constructor() {
-	super();
-	var shadowRoot = this.attachShadow({mode: 'open'})
-	shadowRoot.innerHTML = `
+	constructor() {
+		super();
+		var shadowRoot = this.attachShadow({mode: 'open'});
+		shadowRoot.innerHTML = `
 	<style>
 	button {
 		background-color: transparent;
@@ -55,52 +54,49 @@ constructor() {
 	<button class="like">👍</button>
 	<button class="love">😍</button>
 	</div>
-	`
-}
-
-static get observedAttributes() {
-	return ['rating'];
-}
-
-get rating() {
-	return this.getAttribute('rating');
-}
-
-set rating(val) {
-	if (val) {
-		this.setAttribute('rating', val);
+	`;
 	}
-	else {
-		this.removeAttribute('rating');
+
+	static get observedAttributes() {
+		return ['rating'];
 	}
-}
 
+	get rating() {
+		return this.getAttribute('rating');
+	}
 
-connectedCallback() {
-	var hate = new Event('hate');
-	var dislike = new Event('dislike');
-	var like = new Event('like');
-	var love = new Event('love');
+	set rating(val) {
+		if (val) {
+			this.setAttribute('rating', val);
+		} else {
+			this.removeAttribute('rating');
+		}
+	}
 
-	var buttons = this.shadowRoot.querySelectorAll('button');
-	buttons[0].addEventListener('click', () => {
-		this.dispatchEvent(hate);
-		this.setAttribute('rating', 'hate');
-	})
-	buttons[1].addEventListener('click', () => {
-		this.dispatchEvent(dislike);
-		this.setAttribute('rating', 'dislike');
-	})
-	buttons[2].addEventListener('click', () => {
-		this.dispatchEvent(like);
-		this.setAttribute('rating', 'like');
-	})
-	buttons[3].addEventListener('click', () => {
-		this.dispatchEvent(love);
-		this.setAttribute('rating', 'love');
-	})
-}
+	connectedCallback() {
+		var hate = new Event('hate');
+		var dislike = new Event('dislike');
+		var like = new Event('like');
+		var love = new Event('love');
 
+		var buttons = this.shadowRoot.querySelectorAll('button');
+		buttons[0].addEventListener('click', () => {
+			this.dispatchEvent(hate);
+			this.setAttribute('rating', 'hate');
+		});
+		buttons[1].addEventListener('click', () => {
+			this.dispatchEvent(dislike);
+			this.setAttribute('rating', 'dislike');
+		});
+		buttons[2].addEventListener('click', () => {
+			this.dispatchEvent(like);
+			this.setAttribute('rating', 'like');
+		});
+		buttons[3].addEventListener('click', () => {
+			this.dispatchEvent(love);
+			this.setAttribute('rating', 'love');
+		});
+	}
 }
 
 customElements.define('emoji-rate', Emojirate);

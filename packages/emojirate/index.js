@@ -26,11 +26,17 @@ class Emojirate extends HTMLElement {
 		z-index: 2;
 	}
 
-	div {
+	.outer {
 		display: inline-flex;
 		border-radius: 50px;
 		padding: 10px;
 		background-color: rgb(230,230,230);
+		margin-top: 30px;
+		position: relative;
+	}
+
+	:host {
+		font-family: system-ui;
 	}
 
 	:host([rating=hate]) .hate {
@@ -73,8 +79,48 @@ class Emojirate extends HTMLElement {
 		z-index: 1;
 	}
 
+	// button:before {
+	// 	content: "love!";
+	// 	display: block;
+	// 	font-size: 16px;
+	// 	position: absolute;
+	// 	top: -35px;
+	// 	border-radius: 15px;
+	// 	padding: 5px 10px 5px 10px;
+	// 	background-color: rgb(30,30,30);
+	// 	color: rgb(240,240,240);
+	// }
+
+	// button {
+	// 	position: relative;
+	// }
+
+	.inner {
+		position: absolute;
+		top: -30px;
+		width: 94%;
+		max-width: 100%;
+		text-align: center;
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 20%;
+		box-sizing: border-box;
+	}
+
+	.inner span {
+		opacity: 0;
+		box-sizing: border-box;
+		width: 100%;
+		border-radius: 15px;
+		padding: 2px 2px 2px 2px;
+		background-color: rgb(30,30,30);
+		color: rgb(240,240,240);
+	}
+
 	</style>
-	<div>
+	<div class="outer">
+	<div class="inner">	<span>hate</span><span>dislike</span><span>meh</span><span>like</span><span>love</span>
+	</div>
 	<button class="hate">💩</button>
 	<button class="dislike">👎</button>
 	<button class="neutral">😐</button>
@@ -116,25 +162,30 @@ class Emojirate extends HTMLElement {
 			});
 		}, {once: true});
 
-		buttons[0].addEventListener('click', () => {
-			this.dispatchEvent(hate);
-			this.setAttribute('rating', 'hate');
+		var ratings = [hate, dislike, neutral, like, love];
+
+		let dispatchAndSetAttribute = rating => {
+			this.dispatchEvent(rating);
+			this.setAttribute('rating', rating.type);
+		};
+
+		buttons.forEach((button, index) => {
+			button.addEventListener('click', () => {
+				dispatchAndSetAttribute(ratings[index]);
+			});
 		});
-		buttons[1].addEventListener('click', () => {
-			this.dispatchEvent(dislike);
-			this.setAttribute('rating', 'dislike');
+
+		var spans = Array.from(this.shadowRoot.querySelectorAll('span'));
+
+		buttons.forEach((button, index) => {
+			button.addEventListener('mouseenter', () => {
+				spans[index].style.opacity = 1;
+			});
 		});
-		buttons[2].addEventListener('click', () => {
-			this.dispatchEvent(neutral);
-			this.setAttribute('rating', 'neutral');
-		});
-		buttons[3].addEventListener('click', () => {
-			this.dispatchEvent(like);
-			this.setAttribute('rating', 'like');
-		});
-		buttons[4].addEventListener('click', () => {
-			this.dispatchEvent(love);
-			this.setAttribute('rating', 'love');
+		buttons.forEach((button, index) => {
+			button.addEventListener('mouseleave', () => {
+				spans[index].style.opacity = 0;
+			});
 		});
 	}
 }

@@ -1,5 +1,8 @@
 # History
 
+## 0.2.1 (2018-07-07)
+    * Add tooltips!
+
 ## 0.2.0 (2018-07-07)
     * Change styling - use grayscale
 

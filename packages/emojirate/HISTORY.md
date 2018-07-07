@@ -1,5 +1,8 @@
 # History
 
+## 0.2.0 (2018-07-07)
+    * Change styling - use grayscale
+
 ## 0.1.1 (2018-07-07)
     * Add neutral rating/emoji
 

@@ -22,6 +22,8 @@ class Emojirate extends HTMLElement {
 	button:hover {
 		transform: scale(1.3) rotate(10deg);
 		transition: transform .2s;
+		filter: none !important;
+		z-index: 2;
 	}
 
 	div {
@@ -31,34 +33,44 @@ class Emojirate extends HTMLElement {
 		background-color: rgb(230,230,230);
 	}
 
-	:host([value=hate]) .hate {
+	:host([rating=hate]) .hate {
 		transform: scale(1.4) rotate(10deg);
 		background-color: rgb(200,200,200);
 		border-radius: 50%;
+		filter: none !important;
+		z-index: 1;
 	}
 
-	:host([value=dislike]) .dislike {
+	:host([rating=dislike]) .dislike {
 		transform: scale(1.4) rotate(10deg);
 		background-color: rgb(200,200,200);
 		border-radius: 50%;
+		filter: none !important;
+		z-index: 1;
 	}
 
-	:host([value=neutral]) .neutral {
+	:host([rating=neutral]) .neutral {
 		transform: scale(1.4) rotate(10deg);
 		background-color: rgb(200,200,200);
 		border-radius: 50%;
+		filter: none !important;
+		z-index: 1;
 	}
 
-	:host([value=like]) .like {
+	:host([rating=like]) .like {
 		transform: scale(1.4) rotate(10deg);
 		background-color: rgb(200,200,200);
 		border-radius: 50%;
+		filter: none !important;
+		z-index: 1;
 	}
 
-	:host([value=love]) .love {
+	:host([rating=love]) .love {
 		transform: scale(1.4) rotate(10deg);
 		background-color: rgb(200,200,200);
 		border-radius: 50%;
+		filter: none !important;
+		z-index: 1;
 	}
 
 	</style>
@@ -73,18 +85,18 @@ class Emojirate extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['value'];
+		return ['rating'];
 	}
 
 	get rating() {
-		return this.getAttribute('value');
+		return this.getAttribute('rating');
 	}
 
 	set rating(val) {
 		if (val) {
-			this.setAttribute('value', val);
+			this.setAttribute('rating', val);
 		} else {
-			this.removeAttribute('value');
+			this.removeAttribute('rating');
 		}
 	}
 
@@ -96,25 +108,33 @@ class Emojirate extends HTMLElement {
 		var love = new Event('love');
 
 		var buttons = this.shadowRoot.querySelectorAll('button');
+
+		var div = this.shadowRoot.querySelector('div');
+		div.addEventListener('click', function () {
+			buttons.forEach(button => {
+				button.style.filter = 'grayscale(.6)';
+			});
+		}, {once: true});
+
 		buttons[0].addEventListener('click', () => {
 			this.dispatchEvent(hate);
-			this.setAttribute('value', 'hate');
+			this.setAttribute('rating', 'hate');
 		});
 		buttons[1].addEventListener('click', () => {
 			this.dispatchEvent(dislike);
-			this.setAttribute('value', 'dislike');
+			this.setAttribute('rating', 'dislike');
 		});
 		buttons[2].addEventListener('click', () => {
 			this.dispatchEvent(neutral);
-			this.setAttribute('value', 'neutral');
+			this.setAttribute('rating', 'neutral');
 		});
 		buttons[3].addEventListener('click', () => {
 			this.dispatchEvent(like);
-			this.setAttribute('value', 'like');
+			this.setAttribute('rating', 'like');
 		});
 		buttons[4].addEventListener('click', () => {
 			this.dispatchEvent(love);
-			this.setAttribute('value', 'love');
+			this.setAttribute('rating', 'love');
 		});
 	}
 }

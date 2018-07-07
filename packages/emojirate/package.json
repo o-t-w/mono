@@ -1,6 +1,6 @@
 {
 	"name": "@pixelpusher/emojirate",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A dependency free native/vanilla web component element",
 	"main": "index.js",
 	"author": "olliew",

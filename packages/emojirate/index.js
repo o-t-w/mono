@@ -26,31 +26,46 @@ class Emojirate extends HTMLElement {
 
 	div {
 		display: inline-flex;
-		border-radius: 20px;
+		border-radius: 50px;
 		padding: 10px;
 		background-color: rgb(230,230,230);
 	}
 
-	:host([rating=hate]) .hate {
+	:host([value=hate]) .hate {
 		transform: scale(1.4) rotate(10deg);
+		background-color: rgb(200,200,200);
+		border-radius: 50%;
 	}
 
-	:host([rating=dislike]) .dislike {
+	:host([value=dislike]) .dislike {
 		transform: scale(1.4) rotate(10deg);
+		background-color: rgb(200,200,200);
+		border-radius: 50%;
 	}
 
-	:host([rating=like]) .like {
+	:host([value=neutral]) .neutral {
 		transform: scale(1.4) rotate(10deg);
+		background-color: rgb(200,200,200);
+		border-radius: 50%;
 	}
 
-	:host([rating=love]) .love {
+	:host([value=like]) .like {
 		transform: scale(1.4) rotate(10deg);
+		background-color: rgb(200,200,200);
+		border-radius: 50%;
+	}
+
+	:host([value=love]) .love {
+		transform: scale(1.4) rotate(10deg);
+		background-color: rgb(200,200,200);
+		border-radius: 50%;
 	}
 
 	</style>
 	<div>
 	<button class="hate">💩</button>
 	<button class="dislike">👎</button>
+	<button class="neutral">😐</button>
 	<button class="like">👍</button>
 	<button class="love">😍</button>
 	</div>
@@ -58,43 +73,48 @@ class Emojirate extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['rating'];
+		return ['value'];
 	}
 
 	get rating() {
-		return this.getAttribute('rating');
+		return this.getAttribute('value');
 	}
 
 	set rating(val) {
 		if (val) {
-			this.setAttribute('rating', val);
+			this.setAttribute('value', val);
 		} else {
-			this.removeAttribute('rating');
+			this.removeAttribute('value');
 		}
 	}
 
 	connectedCallback() {
 		var hate = new Event('hate');
 		var dislike = new Event('dislike');
+		var neutral = new Event('neutral');
 		var like = new Event('like');
 		var love = new Event('love');
 
 		var buttons = this.shadowRoot.querySelectorAll('button');
 		buttons[0].addEventListener('click', () => {
 			this.dispatchEvent(hate);
-			this.setAttribute('rating', 'hate');
+			this.setAttribute('value', 'hate');
 		});
 		buttons[1].addEventListener('click', () => {
 			this.dispatchEvent(dislike);
-			this.setAttribute('rating', 'dislike');
+			this.setAttribute('value', 'dislike');
 		});
 		buttons[2].addEventListener('click', () => {
-			this.dispatchEvent(like);
-			this.setAttribute('rating', 'like');
+			this.dispatchEvent(neutral);
+			this.setAttribute('value', 'neutral');
 		});
 		buttons[3].addEventListener('click', () => {
+			this.dispatchEvent(like);
+			this.setAttribute('value', 'like');
+		});
+		buttons[4].addEventListener('click', () => {
 			this.dispatchEvent(love);
-			this.setAttribute('rating', 'love');
+			this.setAttribute('value', 'love');
 		});
 	}
 }

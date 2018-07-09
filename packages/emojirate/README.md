@@ -7,6 +7,7 @@ Rate things with emoji rather than stars
 ## Usage
 ```
 	<emoji-rate></emoji-rate>
+
 <script type="module">
 	import './emojirate/index.js'
 </script>

@@ -1,5 +1,8 @@
 # History
 
+## 0.3.0 (2018-07-09)
+    * Improve custom event API
+
 ## 0.2.2 (2018-07-09)
     * Add documentation
 

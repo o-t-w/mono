@@ -79,22 +79,6 @@ class Emojirate extends HTMLElement {
 		z-index: 1;
 	}
 
-	// button:before {
-	// 	content: "love!";
-	// 	display: block;
-	// 	font-size: 16px;
-	// 	position: absolute;
-	// 	top: -35px;
-	// 	border-radius: 15px;
-	// 	padding: 5px 10px 5px 10px;
-	// 	background-color: rgb(30,30,30);
-	// 	color: rgb(240,240,240);
-	// }
-
-	// button {
-	// 	position: relative;
-	// }
-
 	.inner {
 		position: absolute;
 		top: -30px;
@@ -147,11 +131,7 @@ class Emojirate extends HTMLElement {
 	}
 
 	connectedCallback() {
-		var hate = new Event('hate');
-		var dislike = new Event('dislike');
-		var neutral = new Event('neutral');
-		var like = new Event('like');
-		var love = new Event('love');
+		var rating = new CustomEvent('rating');
 
 		var buttons = this.shadowRoot.querySelectorAll('button');
 
@@ -162,11 +142,11 @@ class Emojirate extends HTMLElement {
 			});
 		}, {once: true});
 
-		var ratings = [hate, dislike, neutral, like, love];
+		var ratings = ['hate', 'dislike', 'neutral', 'like', 'love'];
 
-		let dispatchAndSetAttribute = rating => {
+		let dispatchAndSetAttribute = ratingvalue => {
+			this.setAttribute('rating', ratingvalue);
 			this.dispatchEvent(rating);
-			this.setAttribute('rating', rating.type);
 		};
 
 		buttons.forEach((button, index) => {
